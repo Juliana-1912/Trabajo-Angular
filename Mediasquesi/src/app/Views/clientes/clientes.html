@@ -1,1 +1,35 @@
 <p>clientes works!</p>
+
+<section class="clientes-container">
+  <h2>Clientes | Media Que Sí</h2>
+
+  <p *ngIf="cargando">Cargando clientes...</p>
+
+  <p *ngIf="error">{{ error }}</p>
+
+  <table *ngIf="!cargando && !error">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+        <th>Fecha de creación</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let cliente of clientes">
+        <td>{{ cliente.id }}</td>
+        <td>{{ cliente.nombre }}</td>
+        <td>{{ cliente.telefono || 'Sin registrar' }}</td>
+        <td>{{ cliente.direccion || 'Sin registrar' }}</td>
+        <td>{{ cliente.fecha_creacion | date:'dd/MM/yyyy HH:mm' }}</td>
+      </tr>
+
+      <tr *ngIf="clientes.length === 0">
+        <td colspan="5">No hay clientes registrados.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
