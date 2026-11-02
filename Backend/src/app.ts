@@ -9,7 +9,12 @@ import comprasRoutes from './Routes/compras.router';
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+  origin: 'https://trabajo-angular-five.vercel.app',
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 
 app.get('/api/v1/health', (_req: Request, res: Response) => {
