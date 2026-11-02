@@ -22,7 +22,7 @@ export type NuevoCliente = {
 })
 export class ClientesService {
 
-  private readonly url = 'http://localhost:3000/api/v1/clientes';
+  private readonly url = 'https://mediasquesi-backend-ezkfz0qmg-juliana-dd08.vercel.app/api/v1/clientes';
 
   constructor(private http: HttpClient) {}
 
