@@ -8,4 +8,5 @@ export const pool = new Pool({
   database: process.env.DB_NAME || 'mediasquesi',
   user: process.env.DB_USER || 'postgres',
   password: process.env.DB_PASSWORD,
+  ssl: process.env.DB_HOST ? { rejectUnauthorized: false } : false,
 });
