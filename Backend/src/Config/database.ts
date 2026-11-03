@@ -13,3 +13,10 @@ export const pool = new Pool({
     : false,
 });
 
+pool.on('connect', () => {
+  console.log('Conexión a PostgreSQL establecida');
+});
+
+pool.on('error', (error) => {
+  console.error('Error en el pool de PostgreSQL:', error);
+});
