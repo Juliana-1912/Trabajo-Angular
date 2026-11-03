@@ -6,6 +6,9 @@ import inventariosRoutes from './Routes/inventarios.router';
 import proveedoresRoutes from './Routes/proveedores.router';
 import ventasRoutes from './Routes/ventas.router';
 import comprasRoutes from './Routes/compras.router';
+import detalleComprasRoutes from './Routes/detalle-compras.router';
+import detalleVentasRoutes from './Routes/detalle-ventas.router';
+
 
 const app = express();
 
@@ -28,6 +31,8 @@ app.use('/api/v1/inventarios', inventariosRoutes);
 app.use('/api/v1/proveedores', proveedoresRoutes);
 app.use('/api/v1/ventas', ventasRoutes);
 app.use('/api/v1/compras', comprasRoutes);
+app.use('/api/v1/detalle-compras', detalleComprasRoutes);
+app.use('/api/v1/detalle-ventas', detalleVentasRoutes);
 
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.error(err.stack);
@@ -35,3 +40,4 @@ app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
 });
 
 export default app;
+
