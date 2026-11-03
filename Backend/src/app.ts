@@ -13,8 +13,11 @@ import detalleVentasRoutes from './Routes/detalle-ventas.router';
 const app = express();
 
 app.use(cors({
-  origin: 'https://trabajo-angular-five.vercel.app',
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  origin: [
+    'https://trabajo-angular-five.vercel.app',
+    'https://lovely-flow-production-67be.up.railway.app'
+  ],
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 
