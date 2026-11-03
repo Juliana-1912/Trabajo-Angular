@@ -1,1 +1,36 @@
 <p>proveedores works!</p>
+
+<section class="proveedores-container">
+  <h2>Proveedores | Media Que Sí</h2>
+
+  <p *ngIf="cargando">Cargando proveedores...</p>
+  <p *ngIf="error">{{ error }}</p>
+
+  <table *ngIf="!cargando && !error">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Contacto</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th>Fecha de creación</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let proveedor of proveedores">
+        <td>{{ proveedor.id }}</td>
+        <td>{{ proveedor.nombre }}</td>
+        <td>{{ proveedor.contacto || 'Sin registrar' }}</td>
+        <td>{{ proveedor.email || 'Sin registrar' }}</td>
+        <td>{{ proveedor.telefono || 'Sin registrar' }}</td>
+        <td>{{ proveedor.fecha_creacion | date:'dd/MM/yyyy HH:mm' }}</td>
+      </tr>
+
+      <tr *ngIf="proveedores.length === 0">
+        <td colspan="6">No hay proveedores registrados.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>

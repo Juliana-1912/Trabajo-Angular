@@ -1,6 +1,38 @@
-<h1>Inventario</h1>
+<p>inventario works!</p>
 
-<app-tabla></app-tabla>
+<section class="inventario-container">
+  <h2>Inventario | Media Que Sí</h2>
 
+  <p *ngIf="cargando">Cargando inventario...</p>
+  <p *ngIf="error">{{ error }}</p>
 
+  <table *ngIf="!cargando && !error">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio</th>
+        <th>Talla</th>
+        <th>Stock</th>
+        <th>Descripción</th>
+        <th>Fecha de creación</th>
+      </tr>
+    </thead>
 
+    <tbody>
+      <tr *ngFor="let producto of inventario">
+        <td>{{ producto.id }}</td>
+        <td>{{ producto.nombre }}</td>
+        <td>{{ producto.precio | currency:'COP':'symbol':'1.0-0' }}</td>
+        <td>{{ producto.talla || 'Sin registrar' }}</td>
+        <td>{{ producto.stock }}</td>
+        <td>{{ producto.descripcion || 'Sin descripción' }}</td>
+        <td>{{ producto.fecha_creacion | date:'dd/MM/yyyy HH:mm' }}</td>
+      </tr>
+
+      <tr *ngIf="inventario.length === 0">
+        <td colspan="7">No hay productos registrados.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
