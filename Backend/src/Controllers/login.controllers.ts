@@ -1,11 +1,11 @@
 import type { Request, Response } from 'express';
 
-export const login = async (req: Request, res: Response) => {
-  const { usuario, contraseña } = req.body;
+export const login = (req: Request, res: Response) => {
+  const { usuario, contrasena } = req.body;
 
-  if (usuario === 'admin' && contraseña === '1234') {
-    return res.json({ success: true, message: 'Acceso correcto' });
+  if (usuario === 'Juli' && contrasena === '123456') {
+    res.json({ success: true });
+  } else {
+    res.json({ success: false });
   }
-
-  return res.status(401).json({ success: false, message: 'Credenciales inválidas' });
 };

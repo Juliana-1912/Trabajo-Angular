@@ -10,7 +10,6 @@ import detalleComprasRoutes from './Routes/detalle-compras.router';
 import detalleVentasRoutes from './Routes/detalle-ventas.router';
 import loginRoutes from './Routes/login.router';
 
-
 const app = express();
 
 app.use(cors({

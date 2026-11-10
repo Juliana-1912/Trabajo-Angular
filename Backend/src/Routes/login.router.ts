@@ -1,11 +1,8 @@
-import type { Request, Response } from 'express';
+import { Router } from 'express';
+import { login } from '../Controllers/login.controllers';
 
-export const login = (req: Request, res: Response) => {
-  const { usuario, contrasena } = req.body;
+const router = Router();
 
-  if (usuario === 'Juli' && contrasena === '123456') {
-    res.json({ success: true });
-  } else {
-    res.json({ success: false });
-  }
-};
+router.post('/', login);
+
+export default router;
