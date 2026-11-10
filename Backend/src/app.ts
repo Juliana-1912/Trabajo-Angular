@@ -8,6 +8,7 @@ import ventasRoutes from './Routes/ventas.router';
 import comprasRoutes from './Routes/compras.router';
 import detalleComprasRoutes from './Routes/detalle-compras.router';
 import detalleVentasRoutes from './Routes/detalle-ventas.router';
+import loginRoutes from './Routes/login.router';
 
 
 const app = express();
@@ -15,7 +16,8 @@ const app = express();
 app.use(cors({
   origin: [
     'https://trabajo-angular-five.vercel.app',
-    'https://lovely-flow-production-67be.up.railway.app'
+    'https://lovely-flow-production-67be.up.railway.app',
+    'http://localhost:4200'
   ],
   methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
@@ -36,6 +38,7 @@ app.use('/api/v1/ventas', ventasRoutes);
 app.use('/api/v1/compras', comprasRoutes);
 app.use('/api/v1/detalle-compras', detalleComprasRoutes);
 app.use('/api/v1/detalle-ventas', detalleVentasRoutes);
+app.use('/api/v1/login', loginRoutes);
 
 app.use((err: Error, _req: Request, res: Response, _next: NextFunction) => {
   console.error(err.stack);

@@ -1,9 +1,21 @@
-.medias_rosadas{
-    background-color: pink;
-    color: black;
+
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
-#boton_azul {
-    background-color: blue;
-    color: white;
+th {
+  background-color: #f3e5f5;
+  color: #333;
+  font-weight: bold;
+  padding: 12px;
+  text-align: left;
+}
+
+td {
+  padding: 12px;
+}
+
+tr:hover {
+  background-color: #faf5fc;
 }
