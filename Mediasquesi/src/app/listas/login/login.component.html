@@ -1,14 +1,75 @@
+
 <mat-card class="login-card">
+
   <mat-card-header>
     <mat-card-title>Iniciar sesión</mat-card-title>
   </mat-card-header>
 
   <mat-card-content>
-    <p>Presiona el botón para iniciar sesión.</p>
-    <p class="mensaje">{{ mensaje }}</p>
+
+    <p class="descripcion">
+      Ingresa tus credenciales para acceder a Media Que Sí.
+    </p>
+
+    <form [formGroup]="form" (ngSubmit)="Loguear()">
+
+      <!-- Correo electrónico -->
+      <mat-form-field appearance="outline" class="campo">
+        <mat-label>Correo electrónico</mat-label>
+
+        <input
+          matInput
+          type="email"
+          formControlName="user"
+          placeholder="ejemplo@correo.com"
+        />
+
+        <mat-error *ngIf="form.get('user')?.hasError('required')">
+          Ingrese su correo electrónico
+        </mat-error>
+
+        <mat-error *ngIf="form.get('user')?.hasError('email')">
+          Ingrese un correo electrónico válido
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Contraseña -->
+      <mat-form-field appearance="outline" class="campo">
+        <mat-label>Contraseña</mat-label>
+
+        <input
+          matInput
+          type="password"
+          formControlName="password"
+          placeholder="Ingrese su contraseña"
+        />
+
+        <mat-error *ngIf="form.get('password')?.hasError('required')">
+          Ingrese su contraseña
+        </mat-error>
+
+        <mat-error *ngIf="form.get('password')?.hasError('minlength')">
+          La contraseña debe tener mínimo 6 caracteres
+        </mat-error>
+
+        <mat-error *ngIf="form.get('password')?.hasError('maxlength')">
+          La contraseña debe tener máximo 20 caracteres
+        </mat-error>
+      </mat-form-field>
+
+      <!-- Botón -->
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        class="boton-login"
+        [disabled]="form.invalid || cargando"
+      >
+        {{ cargando ? 'Ingresando...' : 'Ingresar' }}
+      </button>
+
+    </form>
+
   </mat-card-content>
 
-  <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="ingresar()">Ingresar</button>
-  </mat-card-actions>
 </mat-card>

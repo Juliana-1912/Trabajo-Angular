@@ -1,11 +1,40 @@
+
 .login-card {
   max-width: 400px;
-  margin: 40px auto;
+  margin: 60px auto;
   padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
 }
 
-.mensaje {
-  margin-top: 16px;
-  font-weight: 500;
+mat-card-header {
+  justify-content: center;
+  margin-bottom: 20px;
 }
 
+mat-card-title {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.descripcion {
+  text-align: center;
+  color: #666;
+  margin-bottom: 25px;
+}
+
+.campo {
+  width: 100%;
+  margin-bottom: 12px;
+}
+
+.boton-login {
+  width: 100%;
+  height: 45px;
+  margin-top: 10px;
+  border-radius: 8px;
+}
+
+.boton-login:disabled {
+  opacity: 0.6;
+}

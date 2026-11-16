@@ -1,37 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  ProveedoresService,
-  Proveedor
-} from '../../Services/proveedores';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { ProveedoresService } from '../../Services/proveedores';
+import { Tabla } from '../../tabla/tabla';
 
 @Component({
   selector: 'app-proveedores',
   standalone: true,
-  imports: [CommonModule],
+  imports: [Tabla],
   templateUrl: './proveedores.html',
   styleUrl: './proveedores.css',
 })
 export class Proveedores implements OnInit {
+  data: any[] = [];
 
-  proveedores: Proveedor[] = [];
-  cargando = true;
-  error = '';
-
-  constructor(public proveedoresService: ProveedoresService) {}
+  constructor(
+    private proveedoresService: ProveedoresService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.proveedoresService.getProveedores().subscribe({
-      next: (data: Proveedor[]) => {
-        this.proveedores = data;
-        this.cargando = false;
-        console.log('Proveedores obtenidos de PostgreSQL:', data);
+      next: (rows: any[]) => {
+        this.data = rows;
+        this.cdr.detectChanges();
       },
-      error: (err) => {
-        console.error('Error al obtener proveedores:', err);
-        this.error = 'No fue posible cargar los proveedores.';
-        this.cargando = false;
-      }
+      error: (error) => {
+        console.error('Error al consultar proveedores:', error);
+      },
     });
   }
 }

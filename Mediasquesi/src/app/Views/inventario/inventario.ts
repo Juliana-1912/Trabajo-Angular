@@ -1,37 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import {
-  InventarioService,
-  Inventario
-} from '../../Services/inventario';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
+import { InventarioService } from '../../Services/inventario';
+import { Tabla } from '../../tabla/tabla';
 
 @Component({
   selector: 'app-inventario',
   standalone: true,
-  imports: [CommonModule],
+  imports: [Tabla],
   templateUrl: './inventario.html',
   styleUrl: './inventario.css',
 })
 export class InventarioComponent implements OnInit {
+  data: any[] = [];
 
-  inventario: Inventario[] = [];
-  cargando = true;
-  error = '';
-
-  constructor(public inventarioService: InventarioService) {}
+  constructor(
+    private inventarioService: InventarioService,
+    private cdr: ChangeDetectorRef
+  ) {}
 
   ngOnInit(): void {
     this.inventarioService.getInventario().subscribe({
-      next: (data: Inventario[]) => {
-        this.inventario = data;
-        this.cargando = false;
-        console.log('Inventario obtenido de PostgreSQL:', data);
+      next: (rows: any[]) => {
+        this.data = rows;
+        this.cdr.detectChanges();
       },
-      error: (err) => {
-        console.error('Error al obtener inventario:', err);
-        this.error = 'No fue posible cargar el inventario.';
-        this.cargando = false;
-      }
+      error: (error) => {
+        console.error('Error al consultar inventario:', error);
+      },
     });
   }
 }
